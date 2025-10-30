@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Simpsons Page – Etusivu</title>
+  <meta name="description" content="The Simpsons -fanisivun etusivu: banneri, perustiedot ja arvosteluja." />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="#main" class="skip" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">Siirry sisältöön</a>
+
+  <div class="container">
+    <header>
+      <div class="topbar">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="site-title">
+          <a href="/" title="Etusivu">The Simpsons Page</a>
+          <small>Fanisivu – Etusivu</small>
+        </div>
+      </div>
+      <nav aria-label="Päävalikko">
+        <a href="/" aria-current="page">Etusivu</a>
+        <a href="#springfield">Springfield</a>
+        <a href="#characters">Hahmot</a>
+        <a href="#forum">Forum</a>
+      </nav>
+    </header>
+
+    <figure class="banner" aria-labelledby="banner-caption">
+      <img src="https://static.posters.cz/image/hp/71043.jpg" />
+    </figure>
+
+    <main id="main" class="grid">
+      <section class="card" aria-labelledby="intro">
+        <div class="content">
+          <h2 id="intro">Johdanto</h2>
+          <p>
+            The Simpsons on yhdysvaltalainen animaatiosarja, joka seuraa Simpsonin perheen ja Springfieldin kaupungin arkea. Tälle etusivulle on koottu sarjan perustiedot sekä poimintoja ulkopuolisista arvosteluista.
+          </p>
+
+          <div class="divider" role="presentation"></div>
+
+          <h2 id="arvostelut">Arvosteluja</h2>
+          <p class="meta">Alla on viisi esimerkkipoimintaa. Korvaa sisällöt oikeilla lähteillä (esim. IMDb External Reviews) ja lisää linkit alkuperäisiin juttuihin.</p>
+
+          <div class="reviews" role="list">
+            <article class="review" role="listitem">
+  <header>
+    <div>
+      <strong>Nate Ahearn</strong>
+      <span class="meta">— IGN</span>
+    </div>
+    <span class="rating" aria-label="Arvosana">6.5/10</span>
+  </header>
+  <p>
+    “Several of everyone's favorite Simpsons episodes are represented quite effectively. You'll see such favorites as...”
+  </p>
+  <a class="read-more" href="https://www.ign.com/articles/2007/11/07/the-simpsons-review" target="_blank" rel="noopener">Lue koko arvostelu →</a>
+</article>
+
+<article class="review" role="listitem">
+  <header>
+    <div>
+      <strong>Amarkovic-65487</strong>
+      <span class="meta">— IMDB reviewer</span>
+    </div>
+    <span class="rating">8/10</span>
+  </header>
+  <p>
+    “The Simpsons was intelligent, heart felt, structured and most of all... ”
+  </p>
+  <a class="read-more" href="https://www.imdb.com/title/tt0096697/review/rw5637107/?ref_=tturv_2" target="_blank" rel="noopener">Lue koko arvostelu →</a>
+</article>
+
+<article class="review" role="listitem">
+  <header>
+    <div>
+      <strong>Arlando909</strong>
+      <span class="meta">— IMDB reviewer</span>
+    </div>
+    <span class="rating">9/10</span>
+  </header>
+  <p>
+    “It left it's more realistic roots and became more of a satire. With more zany antics and more clever, witty, and often times sophisticated humor, The Simpsons became...”
+  </p>
+  <a class="read-more" href="https://www.imdb.com/title/tt0096697/reviews/" target="_blank" rel="noopener">Lue koko arvostelu →</a>
+</article>
+
+<article class="review" role="listitem">
+  <header>
+    <div>
+      <strong>TheLittleSongbird</strong>
+      <span class="meta">— IMDB reviewer</span>
+    </div>
+    <span class="rating">9/10</span>
+  </header>
+  <p>
+    “When I was 10, I adored the Simpsons, America's favourite dysfunctional family. Me and my brother...”
+  </p>
+  <a class="read-more" href="https://www.imdb.com/title/tt0096697/review/rw2188116/?ref_=tturv_3" target="_blank" rel="noopener">Lue koko arvostelu →</a>
+</article>
+
+<article class="review" role="listitem">
+  <header>
+    <div>
+      <strong>mancunianfatman</strong>
+      <span class="meta">— IMDB reviewer</span>
+    </div>
+    <span class="rating">10/10</span>
+  </header>
+  <p>
+    “even people who don't watch the show have heard about it or can name a few of the characters whether it be Homer, Bart or Marge, THAT IS HOW POWERFUL...”
+  </p>
+  <a class="read-more" href="https://www.imdb.com/title/tt0096697/review/rw2343664/?ref_=tturv_6" target="_blank" rel="noopener">Lue koko arvostelu →</a>
+</article>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card facts" aria-labelledby="facts-title">
+        <h3 id="facts-title">Sarjan perustiedot</h3>
+        <dl>
+          <dt>Release date</dt><dd>17.12.1989</dd>
+          <dt>Created by</dt><dd>Matt Groening</dd>
+          <dt>Country</dt><dd>USA</dd>
+          <dt>Nr of seasons</dt><dd>40 seasons</dd>
+          <dt>Nr of episodes</dt><dd> 40.17 episodes</dd>
+          <dt>Animation studio</dt><dd>Film Roman</dd>
+          <dt>Production company</dt><dd>Gracie Films 20th Century Fox Animation</dd>
+        </dl>
+      </aside>
+    </main>
+
+    <footer>
+      <p>© <span id="year"></span> The Simpsons Page (faniprojekti).</p>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

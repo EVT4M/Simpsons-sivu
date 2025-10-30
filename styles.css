@@ -1,0 +1,55 @@
+:root{
+  --bg:#fafafa; --fg:#0f172a; --muted:#475569; --card:#ffffff; --line:#e2e8f0; --accent:#ffd000;
+  --radius:16px; --shadow:0 8px 20px rgba(2,6,23,.08);
+}
+*{box-sizing:border-box}
+html,body{margin:0; padding:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Inter,Arial,sans-serif; color:var(--fg); background:var(--bg);}
+a{color:#0ea5e9; text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%; height:auto; display:block}
+
+.container{max-width:1100px; margin-inline:auto; padding:1rem;}
+
+header{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.topbar{display:flex; align-items:center; gap:.75rem; padding:.75rem 1rem; border-bottom:1px solid var(--line)}
+.logo{
+display:inline-block;
+width:120px;
+height:60px;
+background-image:url('The_Simpsons_yellow_logo.svg.png');
+background-size:contain;
+background-repeat:no-repeat;
+background-position:center;
+border:none;
+}
+.site-title a{display:inline-flex; align-items:center; gap:.5rem; font-weight:800; color:inherit}
+.site-title small{display:block; font-weight:500; color:var(--muted)}
+nav{display:flex; gap:1rem; padding:.5rem 1rem}
+nav a{padding:.5rem .75rem; border-radius:999px; color:var(--fg)}
+nav a[aria-current="page"], nav a:hover{background:var(--line)}
+
+.banner{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); margin-top:1rem; overflow:hidden; box-shadow:var(--shadow)}
+.banner img{width:100%; aspect-ratio:16/5; object-fit:cover}
+.banner figcaption{padding:.5rem 1rem; color:var(--muted); font-size:.95rem}
+
+.grid{display:grid; grid-template-columns:2fr 1fr; gap:1rem; margin-top:1rem}
+@media (max-width: 860px){ .grid{grid-template-columns:1fr} }
+
+.card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow)}
+.card .content{padding:1rem}
+.divider{height:1px; background:var(--line); margin:1rem 0}
+
+.facts{padding:1rem}
+.facts h3{margin:.2rem 0 1rem 0}
+.facts dl{display:grid; grid-template-columns:auto 1fr; column-gap:1rem; row-gap:.6rem}
+.facts dt{font-weight:700}
+.facts dd{margin:0; color:var(--muted)}
+
+.reviews{display:grid; gap:1rem}
+.review{padding:1rem; border:1px solid var(--line); border-radius:12px}
+.review header{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.5rem; border:0; box-shadow:none}
+.meta{color:var(--muted)}
+.rating{font-weight:700; background:var(--accent); padding:.15rem .5rem; border-radius:999px}
+.read-more{display:inline-flex; align-items:center; gap:.35rem}
+
+footer{color:var(--muted); font-size:.95rem; text-align:center; padding:2rem 0}
