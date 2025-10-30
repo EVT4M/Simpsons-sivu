@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Springfield – The Simpsons Page</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .springfield-banner img {
+      width: 100%;
+      aspect-ratio: 16/6;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .locations {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .location {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .location:hover { transform: scale(1.03); }
+    .location img { width: 100%; height: 180px; object-fit: cover; }
+    .location h3 { text-align: center; margin: .5rem 0; }
+
+    .gallery { display: none; margin-top: 1rem; }
+    .gallery.active { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .gallery img {
+      width: 100%; height: 150px; object-fit: cover;
+      border-radius: var(--radius); box-shadow: var(--shadow);
+      cursor: pointer; transition: transform .2s ease;
+    }
+    .gallery img:hover { transform: scale(1.05); }
+
+    .back-btn {
+      display: inline-block;
+      margin: 1rem 0;
+      cursor: pointer;
+      color: #0ea5e9;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none; align-items: center; justify-content: center;
+      z-index: 999;
+    }
+    .modal.active { display: flex; }
+    .modal img {
+      max-width: 90%; max-height: 80%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="topbar">
+        <div class="logo"></div>
+        <div class="site-title">
+          <a href="index.html">The Simpsons Page</a>
+        </div>
+      </div>
+      <nav>
+        <a href="springfield.html" aria-current="page">Springfield</a>
+        <a href="hahmot.html">Hahmot</a>
+        <a href="forum.html">Forum</a>
+      </nav>
+    </header>
+
+    <section id="springfield-view">
+      <div class="springfield-banner">
+        <img src="https://i.pinimg.com/736x/c6/b4/e8/c6b4e898960597a3b48d857e58b969ae.jpg" alt="Yleiskuva Springfieldin kaupungista">
+      </div>
+      <h2>Springfield view</h2>
+      <div class="locations">
+        <div class="location" onclick="showGallery('home')">
+          <img src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1000w,f_auto,q_auto:best/msnbc/Components/Photos/070713/070713_simpsons_rings_hmed_5a.jpg" alt="Simpsons home">
+          <h3>Simpsons home</h3>
+        </div>
+        <div class="location" onclick="showGallery('moes')">
+          <img src="https://www.animationconnection.com/assets/artwork/1730066049-561-6311-simpsons-original-background-moes-tavern.jpg" alt="Moe's Tavern">
+          <h3>Moe's</h3>
+        </div>
+        <div class="location" onclick="showGallery('kwik')">
+          <img src="https://upload.wikimedia.org/wikipedia/en/7/73/Kwik-e-mart.png" alt="Kwik-e-Mart">
+          <h3>Kwik-e-Mart</h3>
+        </div>
+      </div>
+    </section>
+
+    <section id="home" class="gallery">
+      <span class="back-btn" onclick="goBack()">← Takaisin</span>
+      <h2>Simpsons home</h2>
+      <img src="https://images.squarespace-cdn.com/content/v1/5eb48d3fef49df153d320521/1592102602460-S7TF6B76LB0ZGHAXQBOU/SimpsonsResearch1.jpg" alt="Simpsonsin olohuone" onclick="openModal(this.src)">
+      <img src="https://cdn.bestonlinecabinets.com/blog/wp-content/uploads/2021/04/simpsons-kitchen.0.0-1068x601.jpg.webp" alt="Keittiö" onclick="openModal(this.src)">
+      <img src="https://i.pinimg.com/1200x/7e/27/c0/7e27c021837ebb2b70bebb0d401f3173.jpg" alt="Bartin huone" onclick="openModal(this.src)">
+      <img src="https://i.pinimg.com/1200x/3a/41/15/3a4115ef7c7efd49dd0dc95faa8fc77e.jpg" alt="Piha" onclick="openModal(this.src)">
+      <img src="https://i.pinimg.com/736x/a9/b0/cd/a9b0cd00e6cce636e30aaba5fc3663c5.jpg" alt="Autotalli" onclick="openModal(this.src)">
+    </section>
+
+    <section id="moes" class="gallery">
+      <span class="back-btn" onclick="goBack()">← Takaisin</span>
+      <h2>Moe's Tavern</h2>
+      <img src="https://i.pinimg.com/736x/46/5b/41/465b411ce9eb2a3a8e682e4083370242.jpg" alt="Moe's sisätila" onclick="openModal(this.src)">
+      <img src="https://i.pinimg.com/1200x/0c/9d/28/0c9d285191fa7c79ab6980abae11b44a.jpg" alt="Baari" onclick="openModal(this.src)">
+      <img src="https://i.pinimg.com/1200x/ba/cb/1c/bacb1cdffa1e5a91cc5d979779ab780d.jpg" alt="tiskillä" onclick="openModal(this.src)">
+      <img src="https://i.pinimg.com/736x/69/24/9e/69249efdfbc3379f2eb71bf1b6b0aae7.jpg" alt="kännit" onclick="openModal(this.src)">
+      <img src="https://i.pinimg.com/736x/9b/e2/15/9be2158bf26288fda7ce46b8493dad49.jpg" alt="Moe" onclick="openModal(this.src)">
+    </section>
+
+    <section id="kwik" class="gallery">
+      <span class="back-btn" onclick="goBack()">← Takaisin</span>
+      <h2>Kwik-e-Mart</h2>
+      <img src="https://i.pinimg.com/1200x/09/7f/56/097f5641428491825f022d04469c4841.jpg" alt="Kaupan sisätila" onclick="openModal(this.src)">
+      <img src="https://i.pinimg.com/736x/40/35/ee/4035ee41f88a08a1282da1bac7e912bb.jpg" alt="Hyllyt" onclick="openModal(this.src)">
+      <img src="https://i.pinimg.com/1200x/b3/a2/25/b3a225df4244971d2519f389ec2828ad.jpg" alt="Apu tiskillä" onclick="openModal(this.src)">
+      <img src="https://i.pinimg.com/736x/c0/52/45/c05245aa235c05dff5558f5f328e245e.jpg" alt="Kaupan julkisivu" onclick="openModal(this.src)">
+      <img src="https://i.pinimg.com/736x/7c/11/35/7c11355dc73b01251a38c5a48c0811ae.jpg" alt="Kyltti" onclick="openModal(this.src)">
+    </section>
+
+    <div id="modal" class="modal" onclick="closeModal()">
+      <img src="" alt="">
+    </div>
+
+    <footer>
+      <p>© <span id="year"></span> The Simpsons Page (faniprojekti).</p>
+    </footer>
+  </div>
+
+  <script>
+    const year = document.getElementById('year');
+    year.textContent = new Date().getFullYear();
+
+    function showGallery(id) {
+      document.getElementById('springfield-view').style.display = 'none';
+      document.querySelectorAll('.gallery').forEach(g => g.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function goBack() {
+      document.getElementById('springfield-view').style.display = 'block';
+      document.querySelectorAll('.gallery').forEach(g => g.classList.remove('active'));
+    }
+
+    function openModal(src) {
+      const modal = document.getElementById('modal');
+      modal.querySelector('img').src = src;
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.remove('active');
+    }
+  </script>
+</body>
+</html>
