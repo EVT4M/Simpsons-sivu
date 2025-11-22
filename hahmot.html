@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hahmot – The Simpsons Page</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="topbar">
+        <div class="logo"></div>
+        <div class="site-title"><a href="index.html">The Simpsons Page</a></div>
+      </div>
+      <nav>
+        <a href="springfield.html">Springfield</a>
+        <a href="hahmot.html" aria-current="page">Characters</a>
+        <a href="forum.html">Forum</a>
+      </nav>
+    </header>
+
+    <section id="characters" aria-label="Hahmot">
+      <h2>Characters</h2>
+      <div class="characters-grid" id="characterGrid">
+        <div class="character-card" data-id="homer">
+          <div class="thumb"><img src="https://i.pinimg.com/736x/d4/c7/70/d4c7700921af4fe5e81903fb57212e6d.jpg" alt="Homer" /></div>
+          <strong>Homer</strong>
+        </div>
+
+        <div class="character-card" data-id="marge">
+          <div class="thumb"><img src= "https://i.pinimg.com/736x/e4/42/5a/e4425aad73f01d36ace4c86c3156dcdc.jpg" alt="Marge" /></div>
+          <strong>Marge</strong>
+        </div>
+
+        <div class="character-card" data-id="bart">
+          <div class="thumb"><img src="https://i.pinimg.com/1200x/62/00/89/620089cbeeb6213fe88476bcf56f280c.jpg" alt="Bart" /></div>
+          <strong>Bart</strong>
+        </div>
+        
+        <div class="character-card" data-id="lisa">
+          <div class="thumb"><img src="https://i.pinimg.com/736x/b0/88/e5/b088e5db6b560a33fc20e666a46263b3.jpg" alt="Lisa" /></div>
+          <strong>Lisa</strong>
+        </div>
+
+        <div class="character-card" data-id="maggie">
+          <div class="thumb"><img src="https://i.pinimg.com/736x/ac/27/ce/ac27ce80bfe5c50bdf2cf4a2d66afaa4.jpg" alt="Maggie" /></div>
+          <strong>Maggie</strong>
+        </div>
+
+        <div class="character-card" data-id="burns">
+          <div class="thumb"><img src="https://i.pinimg.com/736x/d3/a3/7c/d3a37ce83e2251a2974d155a36284c27.jpg" alt="Mr Burns" /></div>
+          <strong>Burns</strong>
+        </div>
+
+        <div class="character-card" data-id="apu">
+          <div class="thumb"><img src="https://i.pinimg.com/736x/17/62/47/176247d329c04684303c6c1b9fc9f456.jpg" alt="Apu" /></div>
+          <strong>Apu</strong>
+        </div>
+
+        <div class="character-card" data-id="moe">
+          <div class="thumb"><img src="https://i.pinimg.com/736x/eb/2d/2d/eb2d2d74156e94141c399c221f0834ba.jpg" alt="Moe" /></div>
+          <strong>Moe</strong>
+        </div>
+      </div>
+    </section>
+
+    <section id="characterView" class="character-view" aria-live="polite"></section>
+
+    <div id="memeModal" class="meme-modal" role="dialog" aria-modal="true">
+      <img alt="Meme" />
+    </div>
+
+    <footer><p>© <span id="year"></span> The Simpsons Page (faniprojekti).</p></footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const CHARACTERS = {
+      homer: {
+        name: "Homer Jay Simpson",
+        photo: "https://www.mtvuutiset.fi/_next/image?url=https%3A%2F%2Fapi.mtvuutiset.fi%2Fgraphql%2Fcaas%2Fv1%2Fmedia%2F2593930%2Fdata%2F6f0ff113c4dc062ae6de65bfaa1a4ca8%2Flandscape16_9%2F1024%2F1126984.jpg&w=1600&q=80",
+        desc:
+          "Homer on Simpsonin perheen isä ja Springfieldin ydinvoimalan työntekijä. Kömpelö ja laiska, mutta perhettään rakastava. Tunnettu donitseista ja huudahduksesta “D’oh!”.",
+        actor: {
+          name: "Dan Castellaneta",
+          photo: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcReH3nOwhsmDloK6JfWCEv1D0JzD-BXS06hYQ4piRLCDWbrRSFB28UXRQa18cbHYb1lR-Igsnps6swzXlBOgKudg7ayjI8lSw",
+        },
+        sounds: [
+          "sounds/boring.wav",
+          "sounds/all_right.wav",
+          "sounds/aaaahh.wav"
+        ],
+        memes: [
+          "https://i.pinimg.com/736x/29/10/1b/29101bfc3c7ea8f62f2969a148796aff.jpg",
+          "https://i.pinimg.com/736x/18/13/4c/18134c0788151897021fb9af9a34d940.jpg",
+          "https://i.pinimg.com/1200x/98/2e/1c/982e1c41ea9d1b3f5c1c04d886c688d9.jpg",
+          "https://i.pinimg.com/736x/4b/15/14/4b1514262e91ecf3a541f3bf45c11851.jpg",
+          "https://i.pinimg.com/1200x/72/1f/15/721f15021bb2f00a3c4a10341d2ed4e3.jpg",
+          "https://i.pinimg.com/736x/1d/73/88/1d73882c963af515a26527bb5d118526.jpg",
+        ]
+      },
+      marge: {
+        name: "Marjorie Jacqueline Simpson",
+        photo: "https://i.pinimg.com/736x/77/6d/41/776d41748c4c9ae5940d8a9b10db881a.jpg",
+        desc:
+          "Perheen äiti, tunnettu sinisestä kampauksestaan ja lempeästä, järkevästä luonteestaan. Usein perheen järjen ääni.",
+        actor: {
+          name: "Julie Kavner",
+          photo: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcSQKJQZUJESofjW5qAnwsXVTtw1vSrPq6QHvJAGZ1VIO_4pW9LUERnPr-iUypTwUHaScfjNLPooA5QjaAYzN0CKNftFi4InCA",
+        },
+        sounds: ["sounds/absolutely_not.wav"],
+        memes: [
+          "https://i.pinimg.com/736x/79/ce/a1/79cea124a3ddb36a284d49ea9ed32385.jpg",
+          "https://i.pinimg.com/1200x/8a/39/aa/8a39aaa38386a7884423ec73a89e0e2c.jpg",
+          "https://i.pinimg.com/736x/d8/2d/12/d82d12d14d6be1b78932189e67cbde6c.jpg",
+          "https://i.pinimg.com/736x/a0/22/93/a022933336a7053fd25214ca1139c211.jpg",
+          "https://i.pinimg.com/736x/04/ad/ff/04adffeede22466c0493f87237ca0f7c.jpg",
+          "https://i.pinimg.com/736x/bd/eb/8d/bdeb8df4453343ca63f270945f10d58a.jpg",
+        ]
+      },
+      bart: {
+        name: "Bartholomew JoJo Simpson",
+        photo: "https://i.pinimg.com/736x/09/bf/d6/09bfd68cb96363eeb8d2a629217112bf.jpg",
+        desc:
+          "Perheen ilkikurinen esikoinen, skeittaaja ja kepposten tekijä. Catchphrase: “Ay, caramba!”.",
+        actor: {
+          name: "Nancy Cartwright",
+          photo: "https://t2.gstatic.com/licensed-image?q=tbn:ANd9GcSdnjWgAhDAQlGaEN4L3Pe87jR-UD0jjZNfLVTxYnfRFSsJWAZ-LdXJib7EQxpbtCPAA4XD1wMRxgfSC7uk",
+        },
+        sounds: ["sounds/ay_caramba.wav"],
+        memes: [
+          "https://i.pinimg.com/736x/09/bf/d6/09bfd68cb96363eeb8d2a629217112bf.jpg",
+          "https://i.pinimg.com/736x/b3/d0/03/b3d00394bd400d268f29e28bd5d30ef0.jpg",
+          "https://i.pinimg.com/736x/f9/f9/71/f9f971e9aee68cd11cabb1bf66844e29.jpg",
+          "https://i.pinimg.com/736x/e0/bb/1f/e0bb1f3edfc91d972ac60ba86c29fd97.jpg",
+          "https://i.pinimg.com/736x/c1/2f/54/c12f54d300015de9c4cc8fd94c9bdcea.jpg",
+          "https://i.pinimg.com/1200x/4d/17/7f/4d177ff95699c18e47e85cd0828517e0.jpg",
+        ]
+      },
+      lisa: {
+        name: "Lisa Marie Simpson",
+        photo: "https://i.pinimg.com/736x/b0/88/e5/b088e5db6b560a33fc20e666a46263b3.jpg",
+        desc:
+          "Älykäs, empaattinen ja kunnianhimoinen; soittaa saksofonia ja toimii usein sarjan moraalisena kompassina.",
+        actor: {
+          name: "Yeardley Smith",
+          photo: "https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTGZmttL-EDViXpQYZfZqJ-34VKxOwtU44dDn_ByP1wAiyzRIRQ6veKgTxDmShcfOgtCW40vL-GuS8zOceFRN7UNbDgoVoGrw",
+        },
+        sounds: ["sounds/back_to_work.wav"],
+        memes: [
+           "https://i.pinimg.com/736x/b8/c3/2a/b8c32a85598c84542d5102f14dcbc09c.jpg",
+          "https://i.pinimg.com/736x/ea/dc/96/eadc96b58d980474f8d8e4cd5a98d3e2.jpg",
+          "https://i.pinimg.com/1200x/92/4a/64/924a64b2031c47dc339989f3c715bea1.jpg",
+          "https://i.pinimg.com/736x/b0/2e/5a/b02e5ad81dbfa205fe03774209cceef8.jpg",
+          "https://i.pinimg.com/1200x/4f/49/ac/4f49ac48dd421b5fe20b9d15bc7048c9.jpg",
+          "https://i.pinimg.com/1200x/17/fc/19/17fc190b31ff6243bd6233a6fe08f9cb.jpg",]
+      },
+      maggie: {
+        name: "Margaret Evelyn Lenny Simpson",
+        photo: "https://i.pinimg.com/736x/ac/27/ce/ac27ce80bfe5c50bdf2cf4a2d66afaa4.jpg",
+        desc: "Perheen vauva; tuti, vähäpuheisuus ja yllättävät sankariteot.",
+        actor: {
+          name: "Many but for example Nancy Cartwright",
+          photo: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcTYs5WGIhGbWTibruY8yRagjecbhB5_sMARykP5SAZouLkvgq0aZENTKWvhQsDEQWxONsUiTE3Bh0XjZrFCn_eoQ1EL_Q3VbQ",
+        },
+        sounds: ["sounds/Voicy_Maggie.mp3"],
+        memes: [
+           "https://i.pinimg.com/736x/71/7c/d8/717cd828954fd64ce6e1d0d11df4daf1.jpg",
+          "https://i.pinimg.com/736x/aa/14/ad/aa14ad390531e03f4d7d5cc1c0a50567.jpg",
+          "https://i.pinimg.com/736x/19/20/9e/19209e8ec9736bc3fedb22943252494c.jpg",
+          "https://i.pinimg.com/736x/98/43/b6/9843b67111f977f0822f34d70c7f9a4a.jpg",
+          "https://i.pinimg.com/736x/c5/ba/35/c5ba35ec6fc0f7e7ec81d2834e2672e4.jpg",
+          "https://i.pinimg.com/736x/0e/1f/e1/0e1fe107826c7a22e3844e065103a0d1.jpg",]
+      },
+      burns: {
+        name: "Charles Montgomery Burns",
+        photo: "https://i.pinimg.com/736x/d3/a3/7c/d3a37ce83e2251a2974d155a36284c27.jpg",
+        desc:
+          "Springfieldin ydinvoimalan omistaja; kylmä ja omahyväinen, toistaa usein “Excellent”.",
+        actor: {
+          name: "Harry Shearer",
+          photo: "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcR2U-Tzq-7j58-DPYL5YFC-X6DUVNLYsoYo78L1k4GUVc_BkqkHZ6BgUqJWtKhP9xhZbIj6snlDV8qfx6USmpIr0DFmxCWl9g",
+        },
+        sounds: ["sounds/excellent.wav"],
+        memes: [
+            "https://i.pinimg.com/1200x/a7/66/33/a76633bd38fc278d4501f56f96c26c3d.jpg",
+          "https://i.pinimg.com/736x/4a/f0/d7/4af0d73e3c3dffc0816e3e16d8a0957c.jpg",
+          "https://i.pinimg.com/1200x/db/df/af/dbdfafea88ee574a06c90f9220e8d084.jpg",
+          "https://i.pinimg.com/736x/12/cb/69/12cb69730b673d7a975f27140c0330ef.jpg",
+          "https://i.pinimg.com/736x/d1/a3/c4/d1a3c458990c162fb32a00042c523904.jpg",
+          "https://i.pinimg.com/736x/81/79/8a/81798aa67ac4873725d9473aefc95811.jpg",
+          ]
+      },
+      apu: {
+        name: "Apu Nahasapeemapetilon",
+        photo: "https://i.pinimg.com/736x/17/62/47/176247d329c04684303c6c1b9fc9f456.jpg",
+        desc:
+          "Kwik-E-Martin ystävällinen kauppias. Catchphrase: “Thank you, come again.”",
+        actor: {
+          name: "Hank Azaria",
+          photo: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcSjXROe0SSb0e22fkDMByX1R2p4_1N3CrpDj9fwzevMc3s64-SfMF40o7DewVMU1ntY0aEVOPBkyPVvZFoCvAVHE05M7lSdxA",
+        },
+        sounds: ["sounds/hell.wav"],
+        memes: [
+            "https://i.pinimg.com/1200x/8a/14/c4/8a14c49a4063e6322c23a9588d802c4c.jpg",
+          "https://i.pinimg.com/1200x/16/28/4b/16284be0aa74c8e9373f19e1fe06c259.jpg",
+          "https://i.pinimg.com/736x/a2/c7/04/a2c7041872a83d1c458dcda0cce7871b.jpg",
+          "https://i.pinimg.com/736x/de/ed/bb/deedbb7f02c8d8286133b68dad2785f6.jpg",
+          "https://i.pinimg.com/736x/47/78/c4/4778c4bb2f06b12207c0ef144ebe9563.jpg",
+          "https://i.pinimg.com/736x/85/f8/87/85f887baaa12d3a4908507626051bb5e.jpg",
+          ]
+      },
+      moe: {
+        name: "Morris \"Moe\" Szyslak",
+        photo: "https://i.pinimg.com/736x/eb/2d/2d/eb2d2d74156e94141c399c221f0834ba.jpg",
+        desc: "Moe’s Tavernin omistaja; kyyninen mutta ajoittain lämminsydäminen.",
+        actor: {
+          name: "Hank Azaria",
+          photo: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcSjXROe0SSb0e22fkDMByX1R2p4_1N3CrpDj9fwzevMc3s64-SfMF40o7DewVMU1ntY0aEVOPBkyPVvZFoCvAVHE05M7lSdxA",
+        },
+        sounds: ["sounds/drinking_day.wav"],
+        memes: [
+            "https://i.pinimg.com/736x/69/81/70/69817065f60c6d0e58a34522a81dfa99.jpg",
+          "https://i.pinimg.com/736x/4b/fa/a4/4bfaa4e27cd6867d3ee04f3c906b8019.jpg",
+          "https://i.pinimg.com/736x/b8/d2/12/b8d212e9b66da596fa93759276c06ba8.jpg",
+          "https://i.pinimg.com/736x/80/68/99/8068991fdd43711ba6470c945f985d88.jpg",
+          "https://i.pinimg.com/736x/54/f3/76/54f37624bfe3a7cf9377bf55775d5272.jpg",
+          "https://i.pinimg.com/736x/5e/e3/52/5ee35276488427297dc2021bc376030b.jpg",
+          ]
+      }
+    };
+
+    const grid = document.getElementById("characters");
+    const view = document.getElementById("characterView");
+    const modal = document.getElementById("memeModal");
+
+    document.querySelectorAll(".character-card").forEach(card => {
+      card.addEventListener("click", () => openCharacter(card.dataset.id));
+    });
+
+    function openCharacter(id){
+      const c = CHARACTERS[id];
+      if(!c) return;
+
+      grid.style.display = "none";
+      view.innerHTML = `
+        <a class="back-link" id="backLink">← Takaisin hahmoihin</a>
+        <h2>${c.name.split(" ")[0]} </h2>
+
+        <div class="char-layout">
+          <aside>
+            <img src="${c.photo}" alt="${c.name}">
+          </aside>
+
+          <div class="panel">
+            <div class="tabbar">
+              <button class="tab active" data-tab="info">Info</button>
+              <button class="tab" data-tab="memes">Memes</button>
+            </div>
+
+            <div class="tabcontent active" id="tab-info">
+              <div class="info-block">
+                <h4>Full name</h4>
+                <p><strong>${c.name}</strong></p>
+                <h4>Description</h4>
+                <p>${c.desc}</p>
+                <div class="actor">
+                  <img src="${c.actor.photo}" alt="${c.actor.name}">
+                  <div>
+                    <strong>Ääninäyttelijä:</strong> ${c.actor.name}
+                  </div>
+                </div>
+                ${c.sounds.length ? `<div class="sounds">
+                  ${c.sounds.map((s, i)=>`<button class="sound-btn" data-sound="${s}">Sound clip ${i+1}</button>`).join("")}
+                </div>` : ""}
+              </div>
+            </div>
+
+            <div class="tabcontent" id="tab-memes">
+              <div class="memes">
+                ${c.memes.map(src=>`
+                  <a class="meme" data-src="${src}">
+                    <img src="${src}" alt="${c.name} meme">
+                  </a>`).join("")}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      view.classList.add("active");
+
+      view.querySelector("#backLink").addEventListener("click", () => {
+        view.classList.remove("active");
+        grid.style.display = "block";
+      });
+
+      const tabs = view.querySelectorAll(".tabbar .tab");
+      tabs.forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          tabs.forEach(b=>b.classList.remove("active"));
+          btn.classList.add("active");
+          const isInfo = btn.dataset.tab === "info";
+          view.querySelector("#tab-info").classList.toggle("active", isInfo);
+          view.querySelector("#tab-memes").classList.toggle("active", !isInfo);
+        });
+      });
+
+      view.querySelectorAll(".sound-btn").forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          const a = new Audio(btn.dataset.sound);
+          a.play();
+        });
+      });
+
+      view.querySelectorAll(".meme").forEach(a=>{
+        a.addEventListener("click", ()=>{
+          modal.querySelector("img").src = a.dataset.src;
+          modal.classList.add("active");
+        });
+      });
+    }
+
+    modal.addEventListener("click", ()=> modal.classList.remove("active"));
+  </script>
+</body>
+</html>
