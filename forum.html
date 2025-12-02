@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forum – The Simpsons Page</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    
+    <header>
+      <div class="topbar">
+        <div class="logo"></div>
+        <div class="site-title"><a href="index.html">The Simpsons Page</a></div>
+      </div>
+      <nav>
+        <a href="springfield.html">Springfield</a>
+        <a href="hahmot.html">Characters</a>
+        <a href="forum.html" aria-current="page">Forum</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="forum-wrapper">
+        <div class="forum-header">
+          <h2>Forum</h2>
+
+          <button id="newMessageBtn" class="forum-new-btn">New message</button>
+        </div>
+
+        <div id="forumList" class="forum-list">
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© <span id="year"></span> The Simpsons Page (faniprojekti).</p>
+    </footer>
+  </div>
+
+  <div id="dialogOverlay" class="dialog-overlay">
+    <div class="dialog-box" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+      <h3 id="dialogTitle">New message</h3>
+      <form id="messageForm">
+        <div class="dialog-row">
+          <label for="name">Name</label>
+          <input id="name" name="name" required>
+        </div>
+        <div class="dialog-row">
+          <label for="title">Title</label>
+          <input id="title" name="title" required>
+        </div>
+        <div class="dialog-row">
+          <label for="body">Message</label>
+          <textarea id="body" name="body" required></textarea>
+        </div>
+        <div class="dialog-actions">
+          <button type="button" id="cancelBtn" class="dialog-btn">Cancel</button>
+          <button type="submit" class="dialog-btn primary">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+
+    let messages = [
+      {
+        "sender": "mr customer",
+        "date": "2010-05-10",
+        "title": "looking for someone",
+        "body": "Hi, I'm looking for someone I used to know in high school. I'm wondering if I could find him here?"
+      },
+      {
+        "sender": "Moe",
+        "date": "2010-05-10",
+        "title": "re: looking for someone",
+        "body": "Let's ask around. What's his name?"
+      },
+      {
+        "sender": "mr customer",
+        "date": "2010-05-10",
+        "title": "re: looking for someone",
+        "body": "Yeah, his name is Seymore Butz."
+      },
+      {
+        "sender": "Moe",
+        "date": "2010-05-10",
+        "title": "re: looking for someone",
+        "body": "Is there a Butz here? Everybody! I wanna Seymore Butz!"
+      },
+      {
+        "sender": "Barney",
+        "date": "2010-05-10",
+        "title": "re: looking for someone",
+        "body": "LOL"
+      },
+      {
+        "sender": "Moe",
+        "date": "2010-05-10",
+        "title": "re: looking for someone",
+        "body": "Oh, wait a minute. Listen you little scum-sucking pus bucket. When I get my hands on you, I'm gonna pull out your eyeballs with a corkscrew!"
+      },
+      {
+        "sender": "mr customer",
+        "date": "2010-05-10",
+        "title": "re: looking for someone",
+        "body": "😂😂😂😂😂😂😂😂😂😂😂"
+      }
+    ];
+
+    const forumList    = document.getElementById("forumList");
+    const dialogOverlay = document.getElementById("dialogOverlay");
+    const newMessageBtn = document.getElementById("newMessageBtn");
+    const cancelBtn     = document.getElementById("cancelBtn");
+    const messageForm   = document.getElementById("messageForm");
+
+
+    function renderMessages() {
+      forumList.innerHTML = "";
+      messages.forEach(msg => {
+        const div = document.createElement("article");
+        div.className = "forum-message";
+        div.innerHTML = `
+          <div class="forum-meta">${msg.sender} – ${msg.date}</div>
+          <div class="forum-title">${msg.title}</div>
+          <div class="forum-body">${msg.body}</div>
+        `;
+        forumList.appendChild(div);
+      });
+    }
+
+    renderMessages();
+
+
+    function openDialog() {
+      dialogOverlay.classList.add("open");
+      messageForm.reset();
+      document.getElementById("name").focus();
+    }
+    function closeDialog() {
+      dialogOverlay.classList.remove("open");
+    }
+
+    newMessageBtn.addEventListener("click", openDialog);
+    cancelBtn.addEventListener("click", closeDialog);
+    dialogOverlay.addEventListener("click", (e) => {
+      if (e.target === dialogOverlay) closeDialog();
+    });
+
+
+    messageForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name  = messageForm.name.value.trim();
+      const title = messageForm.title.value.trim();
+      const body  = messageForm.body.value.trim();
+      if (!name || !title || !body) return;
+
+      const now   = new Date();
+      const day   = String(now.getDate()).padStart(2, "0");
+      const month = String(now.getMonth() + 1).padStart(2, "0");
+      const year  = now.getFullYear();
+      const today = `${year}-${month}-${day}`;
+
+      const newMsg = {
+        sender: name,
+        date: today,
+        title: title,
+        body: body
+      };
+
+      messages.push(newMsg);
+      renderMessages();
+      closeDialog();
+    });
+  </script>
+</body>
+</html>
